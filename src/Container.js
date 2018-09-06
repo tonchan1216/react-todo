@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import App from './App';
 
-const projects = [<App name="test" />];
+const projects = [];
 
 let AppHeader = (props) => {
-
 	return (
 		<header>
 			<h1>My Todo Manager</h1>
@@ -12,29 +11,53 @@ let AppHeader = (props) => {
 	);
 }
 
+let AppSidebar = (props) => {
+  const project_tab = props.projects.map((project, key) => {
+	  return (
+	  	<li key={key}>
+	    	<span onClick={() => props.toggleProject(project)}>{project.props.name}</span>
+      	<button onClick={() => props.delete(project)}>×</button>
+	  	</li>
+	  );
+	});
+
+  return (
+  	<div  className="sidebar">
+    	<ProjectAddForm
+    		item={props.item}
+    		updateProjectForm={props.updateProjectForm}
+    		insertProject={props.insertProject}
+    	/>
+  		<ul>{project_tab}</ul>
+  	</div>
+	);
+}
+
+let ProjectAddForm = (props) => {
+	return (
+		<form className="side" onSubmit={props.insertProject}>
+			<input type="text" value={props.item} onChange={props.updateProjectForm} placeholder="Create New Project"/>
+			<input type="submit" value="+" />
+		</form>
+	);
+}
+
+
 let ProjectList = (props) => {
   const project_list = props.projects.map((project, key) => {
     return (
-    	<div className="display" key={getUniqueId()}>
-      	<button onClick={() => props.delete(project)}>Delete</button>
+    	<div key={getUniqueId()}>
     		{project}
     	</div>
     );
   });
 
 	return (
-		<div>{project_list}</div>
+		<div className="project-container">{project_list}</div>
 	);
 }
 
-let ProjectAddForm = (props) => {
-	return (
-		<form onSubmit={props.insertProject}>
-			<input type="text" value={props.item} onChange={props.updateItem}/>
-			<input type="submit" value="create" />
-		</form>
-	);
-}
+
 
 function getUniqueId() {
   return new Date().getTime().toString(36) + '-' + Math.random().toString(36);
@@ -50,8 +73,9 @@ class Container extends Component {
     };
 
     this.insertProject = this.insertProject.bind(this);
-    this.updateItem = this.updateItem.bind(this);
+    this.updateProjectForm = this.updateProjectForm.bind(this);
     this.deleteProject = this.deleteProject.bind(this);
+    this.toggleProject = this.toggleProject.bind(this);
   }
 
   insertProject(e){
@@ -71,7 +95,7 @@ class Container extends Component {
     });
   }
 
-  updateItem(e) {
+  updateProjectForm(e) {
     this.setState({
       item: e.target.value
     });
@@ -87,22 +111,30 @@ class Container extends Component {
     });
   }
 
+  toggleProject(project) {
+  	const projects = this.state.projects.slice();
+    const pos = this.state.projects.indexOf(project);
+
+    projects[pos] 
+    console.log(projects[pos]);
+  }
+
   render() {
     return (
       <div className="container">
-      	<AppHeader 
-      		projects={this.state.projects}
-      	/>
+      	<AppHeader />
 
-      	<ProjectAddForm
-      		item={this.state.item}
-      		updateItem={this.updateItem}
-      		insertProject={this.insertProject}
+      	<AppSidebar
+      		projects={this.state.projects}
+	    		item={this.state.item}
+	    		updateProjectForm={this.updateProjectForm}
+	    		insertProject={this.insertProject}
+      		toggleProject={this.toggleProject}
+      		delete={this.deleteProject}
       	/>
 
       	<ProjectList
       		projects={this.state.projects}
-      		delete={this.deleteProject}
       	/>
 
       </div>
