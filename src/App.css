@@ -1,28 +1,52 @@
-.App {
-  text-align: center;
+
+.container {
+  width: 300px;
+  margin: auto;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.container h1 {
+  font-size: 16px;
+  border-bottom: 1px solid #ddd;
+  padding: 16px 0;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.container ul {
+  padding: 0;
+  list-style: none;
 }
 
-.App-title {
-  font-size: 1.5em;
+.container li {
+  line-height: 1.5;
 }
 
-.App-intro {
-  font-size: large;
+.container input[type="checkbox"] {
+  margin-right: 5px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.cmd {
+  font-size: 12px;
+  cursor: pointer;
+  color: #08c;
+  margin-left: 5px;
+}
+
+.container input[type="text"] {
+  padding: 2px;
+  margin-right: 5px;
+}
+
+h1 > span {
+  color: #ccc;
+  font-size: 12px;
+  font-weight: normal;
+  margin-left: 5px;
+}
+
+h1 > button {
+  float: right;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #ccc;
 }
