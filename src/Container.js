@@ -46,7 +46,7 @@ let ProjectAddForm = (props) => {
 let ProjectList = (props) => {
   const project_list = props.projects.map((project, key) => {
     return (
-    	<div key={getUniqueId()}>
+    	<div key={project.key}>
     		{project}
     	</div>
     );
@@ -133,10 +133,9 @@ class Container extends Component {
       		delete={this.deleteProject}
       	/>
 
-      	<ProjectList
+     	<ProjectList
       		projects={this.state.projects}
       	/>
-
       </div>
     );
   }
