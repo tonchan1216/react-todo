@@ -1,25 +1,29 @@
-
 .container {
   width: 300px;
   margin: auto;
 }
 
-.container h1 {
+.todo-container {
+  width: 300px;
+  margin: auto;
+}
+
+.todo-container h2 {
   font-size: 16px;
   border-bottom: 1px solid #ddd;
   padding: 16px 0;
 }
 
-.container ul {
+.todo-container ul {
   padding: 0;
   list-style: none;
 }
 
-.container li {
+.todo-container li {
   line-height: 1.5;
 }
 
-.container input[type="checkbox"] {
+.todo-container input[type="checkbox"] {
   margin-right: 5px;
 }
 
@@ -30,19 +34,19 @@
   margin-left: 5px;
 }
 
-.container input[type="text"] {
+.todo-container input[type="text"] {
   padding: 2px;
   margin-right: 5px;
 }
 
-h1 > span {
+h2 > span {
   color: #ccc;
   font-size: 12px;
   font-weight: normal;
   margin-left: 5px;
 }
 
-h1 > button {
+h2 > button {
   float: right;
 }
 

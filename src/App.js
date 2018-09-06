@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 const todos = [];
@@ -10,11 +9,11 @@ function TodoHeader(props) {
   });
 
   return (
-    <h1>
+    <h2>
       <button onClick={props.purge}>Purge</button>
-      My Todos
+      {props.name}
       <span>({remaining.length}/{props.todos.length})</span>
-    </h1>
+    </h2>
   );
 }
 
@@ -66,7 +65,7 @@ function getUniqueId() {
   return new Date().getTime().toString(36) + '-' + Math.random().toString(36);
 }
 
-class App extends React.Component {
+class App extends Component {
   constructor() {
     super();
     this.state = {
@@ -143,10 +142,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="todo-container">
         <TodoHeader
           todos={this.state.todos}
           purge={this.purge}
+          name={this.props.name}
         />
         <TodoList
           todos={this.state.todos}
